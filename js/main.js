@@ -7,7 +7,7 @@ $(document).ready(function() {
     [ Validate ]*/
     var input = $('.validate-input .input100');
     
-    $('.validate-form').submit(e=>{
+    $('#validate-form').submit(e=>{
         e.preventDefault(); //previene que actue a form y vaya al php
         var check = true;
         for(var i=0; i<input.length; i++) {
@@ -16,10 +16,26 @@ $(document).ready(function() {
                 check=false;
             }
         }
+        // Si fueron ingresados los valores de mail y pass correctamente
         if(check==true){
-            console.log("verdadero"); // Si fueron ingresados los valores de mail y pass correctamente
+
+            const postData={ //crea un objeto
+                email: $('#email').val(),
+                password: $('#password').val()
+            };
+
+            const url='/includes/userSearch.php';
+
+            console.log(postData,url);
+            $.post(url,postData,(response)=>{ //post alternativa
+                console.log(response);
+            });
+
+
+
+        // no fueron ingresados los valores de mail y pass
         }else{
-            console.log("falso"); // no fueron ingresados los valores de mail y pass
+            
         }
 
     });

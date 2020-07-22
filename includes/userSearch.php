@@ -2,13 +2,13 @@
     include('connection.php');
 
     
-    $userName=$_POST['userName'];
+    $email=$_POST['email'];
     $passwoord=$_POST['password'];
     
-    if(!empty($userName) && !empty($pass)){
+    if(!empty($email) && !empty($pass)){
         $link = new Connection('','','','');
 
-        $query="SELECT * FROM users WHERE userName LIKE '$userName' and password LIKE 'password' ";
+        $query="SELECT * FROM users WHERE email LIKE '$email' and password LIKE 'password' ";
         $result=mysqli_query($link->getConnection(),$query);
 
         if(!$result){
