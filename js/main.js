@@ -1,60 +1,74 @@
 
-$(document).ready(function() { 
+$(document).ready(function () {
     "use strict";
 
 
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
-    
-    $('#validate-form').submit(e=>{
+
+    $('#validate-form').submit(e => {
         e.preventDefault(); //previene que actue a form y vaya al php
         var check = true;
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
+        for (var i = 0; i < input.length; i++) {
+            if (validate(input[i]) == false) {
                 showValidate(input[i]);
-                check=false;
+                check = false;
             }
         }
         // Si fueron ingresados los valores de mail y pass correctamente
-        if(check==true){
+        if (check == true) {
 
-            const postData={ //crea un objeto
+            const postData = { //crea un objeto
                 email: $('#email').val(),
                 password: $('#password').val()
             };
+            const url = 'includes/userSearch.php';
+            $.ajax({
+                url: url,
+                data:  postData ,
+                type: "POST",
+                contenttype: "application/json; charset=utf-8",
 
-            const url='/includes/userSearch.php';
-
-            console.log(postData,url);
+                success: function (response) {
+                    if (!response.error) {
+                        let respuesta=JSON.parse(response);
+                        console.log(respuesta);
+                    }
+                },
+                error:function(){
+                    console.log("Hubo un error en la consulta");
+                }
+            });
+            /*
             $.post(url,postData,(response)=>{ //post alternativa
                 console.log(response);
             });
-
+            */
 
 
         // no fueron ingresados los valores de mail y pass
-        }else{
-            
+        } else {
+
         }
 
     });
 
 
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
+    $('.validate-form .input100').each(function () {
+        $(this).focus(function () {
+            hideValidate(this);
         });
     });
 
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+    function validate(input) {
+        if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+            if ($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
                 return false;
             }
         }
         else {
-            if($(input).val().trim() == ''){
+            if ($(input).val().trim() == '') {
                 return false;
             }
         }
@@ -69,7 +83,7 @@ $(document).ready(function() {
         var thisAlert = $(input).parent();
         $(thisAlert).removeClass('alert-validate');
     }
-    
-    
+
+
 
 });
