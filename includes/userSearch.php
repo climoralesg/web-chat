@@ -1,6 +1,5 @@
 <?php
     include('connection.php');
-
     
     $email=$_POST['email'];
     $password=$_POST['password'];
@@ -37,7 +36,7 @@
                         "code"=>0,"message"=>"Usuario encontrado"
                     ];
                 }
-         
+
             }
             $jsonString=json_encode($json);
             echo $jsonString;

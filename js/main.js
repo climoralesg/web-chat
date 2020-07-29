@@ -72,10 +72,7 @@ $(document).ready(function () {
                 userName: $('#userName').val()
             };
 
-            console.log(postData);
-
             const url = 'includes/userRegister.php';
-            
             $.ajax({
                 url: url,
                 data: postData,
@@ -83,8 +80,11 @@ $(document).ready(function () {
                 contenttype: 'application/json; charset=utf-8',
                 success: function (response) {
                     if (!response.error) {
+                        console.log(response);
+                        /*
                         let respuesta = JSON.parse(response);
                         console.log(respuesta);
+                        */
                     }
                 },
                 error: function () {
