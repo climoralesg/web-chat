@@ -33,6 +33,15 @@ $(document).ready(function () {
                 success: function (response) {
                     if (!response.error) {
                         let respuesta = JSON.parse(response);
+
+                        switch (respuesta['code']) {
+                            case 0:
+                                window.location = './chat.html?username=' + respuesta['message'];
+                                break;
+                            case 1:
+                                break;
+                        }
+
                         console.log(respuesta);
                     }
                 },
@@ -76,22 +85,36 @@ $(document).ready(function () {
             $.ajax({
                 url: url,
                 data: postData,
-                type:"POST",
+                type: "POST",
                 contenttype: 'application/json; charset=utf-8',
                 success: function (response) {
                     if (!response.error) {
-                        console.log(response);
-                        /*
                         let respuesta = JSON.parse(response);
                         console.log(respuesta);
-                        */
+                        switch (respuesta['code']) {
+                            case 0:
+                                location.href = "./index.html"
+                                console.log("respuesta " + respuesta
+                                ['message']);
+                                break;
+
+                            case 1:
+
+                                break;
+
+                            case 2:
+                                console.log("respuesta " + respuesta
+                                ['message']);
+                                break;
+                        }
+
                     }
                 },
                 error: function () {
                     console.log("hubo un error")
                 }
             })
-            
+
         } else {
             // no fueron ingresados los valores de mail y pass
         }
