@@ -36,7 +36,7 @@ $(document).ready(function () {
 
                         switch (respuesta['code']) {
                             case 0:
-                                window.location = './chat.html?username=' + respuesta['message'];
+                                window.location = './chat.html?username=' + respuesta['userName'];
                                 break;
                             case 1:
                                 break;
@@ -82,6 +82,7 @@ $(document).ready(function () {
             };
 
             const url = 'includes/userRegister.php';
+            
             $.ajax({
                 url: url,
                 data: postData,

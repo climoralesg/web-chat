@@ -33,7 +33,7 @@
                     */
                     //Objeto sin invocar
                     $json=(object)[
-                        "code"=>0,"message"=>"Usuario encontrado"
+                        "code"=>0,"message"=>"Usuario encontrado","userName"=>$row['userName']
                     ];
                 }
 
