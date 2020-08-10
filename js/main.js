@@ -39,6 +39,13 @@ $(document).ready(function () {
                                 window.location = './chat.html?username=' + respuesta['userName'];
                                 break;
                             case 1:
+                                console.log("Error en la consulta")
+                                break;
+                            case 2:
+                                console.log("Usuario y/o contraseña no encontrados")
+                                break;
+                            case 3:
+                                console.log("Error en los datos enviados al servidor")
                                 break;
                         }
 
@@ -49,13 +56,6 @@ $(document).ready(function () {
                     console.log("Hubo un error en la consulta");
                 }
             });
-            /*
-            $.post(url,postData,(response)=>{ //post alternativa
-                console.log(response);
-            });
-            */
-
-
             // no fueron ingresados los valores de mail y pass
         } else {
 
@@ -82,7 +82,7 @@ $(document).ready(function () {
             };
 
             const url = 'includes/userRegister.php';
-            
+
             $.ajax({
                 url: url,
                 data: postData,
