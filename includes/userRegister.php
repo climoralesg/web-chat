@@ -15,49 +15,35 @@
 
         if(!$resultSearch){
             die('Query Error'.mysqli_error($link->getConnection()));
-
-            $json=(object)[
-                "code"=>1,"message"=>"Hubo un error en la insercion de datos"
-            ];
+            sendMessage(1,"Hubo un error en la insercion de datos");
         }else{
-
             if(mysqli_num_rows($resultSearch)>0){
-                $json=(object)[
-                    "code"=>2,"message"=>"Email ya se encuentra registrado"
-                ];
+                sendMessage(2,"Email ya se encuentra registrado");
             }else{
                 $resultInsert=query($link,$insertUser);
-                
                 if(!$resultInsert){
                     die('insert Error'.mysqli_error($link->getConnection()));
-                    
-                    $json=(object)[
-                        "code"=>1,"message"=>"Hubo un error en la insercion de datos"
-                    ];
-
+                    sendMessage(1,"Hubo un error en la insercion de datos");
                 }else{
-                    $json=(object)[
-                        "code"=>0,"message"=>"Usuario insertado de forma exitosa"
-                    ];
+                    sendMessage(0,"Usuario registrado de forma exitosa");
                 }
             }
         }
-
-        $jsonString=json_encode($json);
-        echo $jsonString;
     //Si existen datos vacios.    
     }else{
-        $json=(object)[
-            "code"=>4,"message"=>"Los datos enviados son vacios"
-        ];
-            $jsonString=json_encode($json);
-        echo $jsonString;
+        sendMessage(3,"Los datos enviados son vacios");
     }
 
     function query($link,$query){      
-        
         return mysqli_query($link->getConnection(),$query);
+    }
 
+    function sendMessage($code,$message){
+        $json=(object)[
+            "code"=>$code,"message"=>$message
+        ];
+        $jsonString=json_encode($json);
+        echo $jsonString;
     }
 
 ?>

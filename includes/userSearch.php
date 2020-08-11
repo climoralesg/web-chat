@@ -19,7 +19,7 @@ if (!empty($email) && !empty($password)) {
             sendMessage(2, "Usuario o contraseña no encontrados");
         } else {
             while ($row = mysqli_fetch_array($result)) {
-                sendMessage(0, "Usuario encontrado");
+                sendAprovedUser(0, "Usuario encontrado",$row['userName']);
             }
         }
     }
@@ -30,6 +30,14 @@ if (!empty($email) && !empty($password)) {
 function sendMessage($code, $message){
     $json = (object)[
         "code" => $code, "message" => $message
+    ];
+    $jsonString = json_encode($json);
+    echo $jsonString;
+}
+
+function sendAprovedUser($code, $message,$userName){
+    $json = (object)[
+        "code" => $code, "message" => $message,"userName"=>$userName
     ];
     $jsonString = json_encode($json);
     echo $jsonString;

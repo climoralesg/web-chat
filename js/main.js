@@ -36,20 +36,18 @@ $(document).ready(function () {
 
                         switch (respuesta['code']) {
                             case 0:
-                                window.location = './chat.html?username=' + respuesta['userName'];
+                                window.location.href = './chat.php?userName='+respuesta['userName'];
                                 break;
                             case 1:
-                                console.log("Error en la consulta")
+                                console.log(respuesta['message']);
                                 break;
                             case 2:
-                                console.log("Usuario y/o contraseña no encontrados")
+                                console.log(respuesta['message']);
                                 break;
                             case 3:
-                                console.log("Error en los datos enviados al servidor")
+                                console.log(respuesta['message']);
                                 break;
                         }
-
-                        console.log(respuesta);
                     }
                 },
                 error: function () {
@@ -95,17 +93,19 @@ $(document).ready(function () {
                         switch (respuesta['code']) {
                             case 0:
                                 location.href = "./index.html"
-                                console.log("respuesta " + respuesta
-                                ['message']);
+                                console.log("respuesta " + respuesta['message']);
                                 break;
-
                             case 1:
-
+                                console.log("respuesta" + respuesta['message'])
                                 break;
-
                             case 2:
-                                console.log("respuesta " + respuesta
-                                ['message']);
+                                console.log("respuesta " + respuesta['message']);
+                                break;
+                            case 3:
+                                console.log("respuesta " + respuesta['message']);
+                                break;
+                            case 4:
+                                console.log("respuesta " + respuesta['message']);
                                 break;
                         }
 

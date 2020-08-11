@@ -36,7 +36,7 @@
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 
                 <span class="login100-form-title p-b-33" id="userName" name="userName" type="text">
-                    Bienvenido:
+                    Bienvenido <?php echo $_GET['userName']?>
                 </span>
 
                 <div id="chat-container">
