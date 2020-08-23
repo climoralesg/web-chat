@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if(!empty($_SESSION['login_user'])){
+		header('Location: chat.php');
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 

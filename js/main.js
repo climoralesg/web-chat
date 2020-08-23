@@ -36,7 +36,7 @@ $(document).ready(function () {
 
                         switch (respuesta['code']) {
                             case 0:
-                                window.location.href = './chat.php?userName='+respuesta['userName'];
+                                window.location.href = './chat.php';
                                 break;
                             case 1:
                                 console.log(respuesta['message']);

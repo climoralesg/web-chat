@@ -1,7 +1,7 @@
 <?php
 
 include('connection.php');
-
+session_start();
 $email = $_POST['email'];
 $password = $_POST['password'];
 
@@ -39,6 +39,7 @@ function sendAprovedUser($code, $message,$userName){
     $json = (object)[
         "code" => $code, "message" => $message,"userName"=>$userName
     ];
+    $_SESSION['login_user']=$userName;
     $jsonString = json_encode($json);
     echo $jsonString;
 }

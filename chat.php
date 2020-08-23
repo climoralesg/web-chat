@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (empty($_SESSION['login_user'])) {
+    header('Location: index.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -35,33 +42,45 @@
         <div class="container-login100">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 
-                <span class="login100-form-title p-b-33" id="userName" name="userName" type="text">
-                    Bienvenido <?php echo $_GET['userName']?>
+                <span class="login100-form-title" type="text">
+                    Bienvenido
                 </span>
 
+                <span class="login100-form-title p-b-33" id="userName" name="userName" userName="<?php echo $_SESSION['login_user'] ?>" type="text">
+                    <?php echo $_SESSION['login_user'] ?>
+                </span>
+                
                 <div id="chat-container">
                     <div id="chat-window">
                         <div id="output">
-                            <div id="actions">
-
-                            </div>
 
                         </div>
                     </div>
                 </div>
 
+                <div id="actions">
+
+                </div>
                 <div class="wrap-input100 rs1 validate-input" data-validate="Mensaje es validado">
                     <input class="input100" type="message" id="message" name="message" placeholder="Mensaje">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
 
+                
+
                 <div class="container-login100-form-btn m-t-20">
                     <button class="login100-form-btn" id="send" name="send">
                         Enviar
                     </button>
                 </div>
-                </form>
+                
+                <div class="container-login100-form-btn m-t-10">
+                    <a class="login100-form-btn" id="exit" name="exit" href="includes/logout.php">
+                        Salir
+                    </a>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -84,13 +103,10 @@
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
-
-    <!--===============================================================================================-->
-    <script src="js/chat.js"></script>
     <!--===============================================================================================-->
     <script src="js/socketio.js"></script>
     <!--===============================================================================================-->
-
+    <script src="js/chat.js"></script>
 </body>
 
 </html>
