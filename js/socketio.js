@@ -9,13 +9,8 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on('click','#send',(e)=>{
-        
-    })
-
     $("#message").keyup(function(e){ 
-        let code = e.key; // recommended to use e.key, it's normalized across devices and languages
-       
+        let code = e.key; // recommended to use e.key, it's normalized across devices and languages       
     });
 
     //Usuario se encuentra escribiendo : emite
@@ -30,7 +25,6 @@ $(document).ready(function () {
         }else{
             socket.emit('chat:typing',$('#userName').attr('userName'));
         }
-     
     })
 
     //usuario/mensaje : Recibe
